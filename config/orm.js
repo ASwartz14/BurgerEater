@@ -3,7 +3,7 @@ const connection = require("./connection.js");
 function printQuestionMarks(num) {
   let arr = [];
 
-  for (let i = 0; i < num; i++) {
+  for (var i = 0; i < num; i++) {
     arr.push("?");
   }
 
@@ -13,8 +13,8 @@ function printQuestionMarks(num) {
 function objToSql(ob) {
   let arr = [];
 
-  for (let key in ob) {
-    let value = ob[key];
+  for (var key in ob) {
+    var value = ob[key];
     if (Object.hasOwnProperty.call(ob, key)) {
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = "'" + value + "'";
@@ -36,7 +36,6 @@ let orm = {
       cb(result);
     });
   },
-
   insertOne: function (table, cols, vals, cb) {
     let queryString = "INSERT INTO " + table;
 
@@ -57,6 +56,7 @@ let orm = {
       cb(result);
     });
   },
+
   updateOne: function (table, objColVals, condition, cb) {
     let queryString = "UPDATE " + table;
 
@@ -75,4 +75,5 @@ let orm = {
     });
   },
 };
+
 module.exports = orm;
